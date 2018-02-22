@@ -102,7 +102,38 @@ For example:
 
 Existing categories are:
 
-[TABLE]
+| Category name                  | Description                                            | PII level | Collected by default? |
+|--------------------------------|--------------------------------------------------------|-----------|-----------------------|
+| CVSM                           | Citrix StorageLink configuration                       | No        | Yes                   |
+| disk-info                      | Disk information                                       | Maybe     | Yes                   |
+| firstboot                      | First-boot scripts                                     | Yes       | Yes                   |
+| hardware-info                  | Hardware information                                   | Maybe     | Yes                   |
+| high-availability              | High availability                                      | Maybe     | Yes                   |
+| host-crashdump-dumps           | Crash dump files                                       | Yes       | No                    |
+| host-crashdump-logs            | Crash dump logs                                        | No        | No                    |
+| kernel-info                    | Kernel information                                     | Maybe     | Yes                   |
+| loopback-devices               | Loopback devices                                       | Maybe     | Yes                   |
+| multipath                      | Multipathing configuration                             | Maybe     | Yes                   |
+| network-status                 | Network scripts                                        | If customized | Yes               |
+| pam                            | Authentication module configuration                    | No        | Yes                   |
+| process-list                   | Process listing                                        | Yes       | Yes                   |
+| persistent-stats               | Persistent statistics                                  | Maybe     | Yes                   |
+| system-logs                    | System logs                                            | Maybe     | Yes                   |
+| system-services                | System services                                        | No        | Yes                   |
+| tapdisk-logs                   | Storage subsystem logs                                 | No        | No                    |
+| vncterm                        | VNCTerm crash dumps                                    | Maybe     | No                    |
+| wlb                            | Workload Balancing status                              | No        | Yes                   |
+| XYes1                          | X server logs                                          | No        | Yes                   |
+| XYes1-auth                     | X11 authority                                          | No        | Yes                   |
+| xapi-subprocess                | XenServer daemon subprocesses                          | No        | Yes                   |
+| XenServer-config               | XenServer configuration                                | Maybe     | Yes                   |
+| XenServer-domains              | XenServer domains list                                 | No        | Yes                   |
+| XenServer-databases            | XenServer database                                     | Yes       | Yes                   |
+| XenServer-install              | XenServer installation log files                       | Maybe     | Yes                   |
+| XenServer-logs                 | XenServer logs                                         | Maybe     | Yes                   |
+| xen-info                       | Hypervisor configuration                               | Maybe     | Yes                   |
+| xha-liveset                    | High availability liveset                              | Maybe     | Yes                   |
+| yum                            | RPM package database                                   | If customized | Yes               |
 
 A number of other categories exist: these are purely for development and test purposes, and should therefore not be extended by supplemental packs.
 

@@ -1,12 +1,12 @@
 # Rules and guidelines
 
-##  Kernel modules
+## Kernel modules
 
 Kernel modules must be built and packaged according to the following:
 
--   Modules must be placed in an RPM.
+-  Modules must be placed in an RPM.
 
--   All modules must be located under the directory
+-  All modules must be located under the directory
     `/lib/modules/<kernel>/updates` where &lt;*kernel*&gt; is the
     version of the kernel.
 
@@ -216,7 +216,11 @@ For example:
     RPM version = 1.0
     RPM build = 1
 
-[TABLE]
+| XenServer Kernel version | Kernel module RPM version | Event                                              |
+|--------------------------|---------------------------|----------------------------------------------------|
+| 2.6.18.128.1.5...        | 1.0-1                     | Initial release of pack                            |
+| 2.6.18.128.1.5...        | 1.1-1                     | Driver bug fix                                     |
+| 2.6.27.37...             | 2.0-1                     | New XenServer kernel, and new driver version       |
 
 Therefore, if a supplemental pack contains a driver, it will be
 necessary to rebuild that driver for each update and major release of
