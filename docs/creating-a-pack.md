@@ -46,7 +46,7 @@ As an illustration of how `build-update` works, pack authors can create an examp
 The pack metadata is then created, using the script.
 
     build-update --uuid 3fbce6cf-5cd2-4d32-9602-e8122c562169 --label example pack --version 1.0.0 \
-    --description "An Example Pack" --base-requires "product version=7.5.0" \
+    --description "An Example Pack" --base-requires "product version=7.3.0" \
     --key "Example Updates (update) <example@example.com>" --keyfile /root/RPM-GPG-KEY-XS-DDK-TEST \
     -o example.iso *.rpm
 
