@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Producing driver RPMs - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Producing driver RPMs";
+      var mkdocs_page_input_path = "producing-rpms.md";
+      var mkdocs_page_url = "/producing-rpms/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Producing driver RPMs</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#producing-driver-rpms" style="padding:0px;position: relative;">&nbsp;Producing driver RPMs</a></li>
+                
+                    <li><a class="toctree-l4" href="#directory-structure" style="padding:0px;position: relative;">Directory structure</a></li>
+                
+                    <li><a class="toctree-l4" href="#makefile-variables" style="padding:0px;position: relative;">Makefile variables</a></li>
+                
+                    <li><a class="toctree-l4" href="#creating-the-kernel-module-specification-file" style="padding:0px;position: relative;">Creating the kernel module specification file</a></li>
+                
+                    <li><a class="toctree-l4" href="#building-the-modules" style="padding:0px;position: relative;">Building the modules</a></li>
+                
+                    <li><a class="toctree-l4" href="#including-driver-rpms-in-supplemental-packs" style="padding:0px;position: relative;">Including driver RPMs in supplemental packs</a></li>
+                
+                    <li><a class="toctree-l4" href="#format-for-releasing-drivers" style="padding:0px;position: relative;">Format for releasing drivers</a></li>
+                
+                    <li><a class="toctree-l4" href="#releasing-multiple-drivers-in-a-single-pack-" style="padding:0px;position: relative;">Releasing multiple drivers in a single pack-</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Producing driver RPMs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="producing-driver-rpms">Producing driver RPMs<a class="headerlink" href="#producing-driver-rpms" title="Permanent link">&para;</a></h1>
+<p>In order to produce a supplemental pack that contains kernel modules
+(drivers), the DDK must be used to compile the driver(s) from their
+source code, against the XenServer kernel. This chapter describes the
+process.</p>
+<h2 id="directory-structure">Directory structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
+<p>Although the examples located in the <code>/root/examples/</code> directory contain various subdirectories, in practice, most supplemental pack authors will not use this structure.
+The following example considers a supplemental pack that contains both kernel modules and userspace components (as the <code>combined</code> example does).</p>
+<p>In the <code>combined</code> case, two RPMs will be created, one containing the kernel modules, and the other the "data" or userspace portions (configuration files, firmware,  modprobe rules).
+Hence, two specification files are present, which specify the contents of each RPM that is to be created.</p>
+<p>The kernel driver source code should be placed in the <code>/root/rpmbuild/SOURCES/</code> directory as a tar archive (may be gzipped or bzip2 compressed), whose name should be of the format <code>&lt;module-name&gt;-&lt;module-version&gt;</code>.
+Meanwhile, the specification files for the RPMs to be created will be stored in a directory elsewhere.
+Citrix recommends authors make a copy of the specification files and Makefile found in the <code>examples/combined/</code> directory as a starting point.
+The Makefile contains various useful build targets that can be adjusted for the kernel module sources being used.</p>
+<p>All non-kernel module components should be placed in a directory named <code>&lt;module-name&gt;-data-&lt;version&gt;</code>, for example, <code>helloworld-data-1.0</code>.
+The corresponding specification file would be <code>helloworld-data.spec</code>.
+It is suggested that this subdirectory be placed in the same directory as the specification files.</p>
+<h2 id="makefile-variables">Makefile variables<a class="headerlink" href="#makefile-variables" title="Permanent link">&para;</a></h2>
+<p>The Makefile includes several metadata attributes which must be customized according to the contents of the pack. These are as follows:</p>
+<ul>
+<li>
+<p><strong>SPEC</strong>: the specification file for the driver RPM.</p>
+</li>
+<li>
+<p><strong>DATA_SPEC</strong>: the specification file for the userspace components RPM.</p>
+</li>
+<li>
+<p><strong>LABEL</strong>: by default, taken from the "Name:" field of the driver RPM specification file, but can be edited if so desired.</p>
+</li>
+<li>
+<p><strong>TEXT</strong>: a free text field describing the function of the driver. This is displayed on installation.</p>
+</li>
+<li>
+<p><strong>UUID</strong>: a universal unique identifier generated by the UUIDgen command.
+    Every pack must have a different UUID and a given pack should have the same UUID each time it is built.</p>
+</li>
+<li>
+<p><strong>PACK_VERSION</strong>: the version number of the pack (this defaults to the build of the DDK being used, but should be changed by pack authors).</p>
+</li>
+<li>
+<p><strong>PACK_BUILD</strong>: the build number of the pack (this defaults to the build of the DDK being used, but should be changed by pack authors).</p>
+</li>
+<li>
+<p><strong>RPM_VERSION</strong>: the version number to be used for the kernel modules RPM. Citrix advises authors to set this to the version of the driver source being used.</p>
+</li>
+<li>
+<p><strong>RPM_RELEASE</strong>: the release number of this version of the RPM. For example, the same version of driver might be re-released in a supplemental pack, and hence need a new release number.</p>
+</li>
+<li>
+<p><strong>DATA_RPM_VERSION</strong>: the version number to be used for the userspace RPM.</p>
+</li>
+<li>
+<p><strong>DATA_RPM_RELEASE</strong>: the release number to be used for the userspace RPM.</p>
+</li>
+</ul>
+<h2 id="creating-the-kernel-module-specification-file">Creating the kernel module specification file<a class="headerlink" href="#creating-the-kernel-module-specification-file" title="Permanent link">&para;</a></h2>
+<p>The kernel module packages are built according to the instructions in the specification file.
+The following sections of the specification file affect the building of a package and should be set to appropriate values:</p>
+<ul>
+<li>
+<p><strong>Name</strong>: a unique ID, preferably the name of the kernel module.</p>
+</li>
+<li>
+<p><strong>Source</strong>: the exact filename (without the path) of the tar archive that contains the sources for the kernel module, expected to be of the form <code>&lt;module-name&gt;-&lt;module-version&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Summary</strong>: a short description of the driver.</p>
+</li>
+<li>
+<p><strong>%files</strong> is a list of files that are to be compiled into the RPM.
+    Kernel modules must be located in a directory named <code>extra</code> (within <code>/lib/modules/&lt;kernel-version&gt;/</code>).</p>
+</li>
+<li>
+<p><strong>%changelog</strong> describes changes that have been made to the driver.</p>
+</li>
+</ul>
+<h2 id="building-the-modules">Building the modules<a class="headerlink" href="#building-the-modules" title="Permanent link">&para;</a></h2>
+<p>Each kernel module RPM must be built against against the XenServer kernel headers.
+The example Makefile provides a <code>build-rpms</code> target that automates the build.
+The userspace RPM is also built if necessary.
+The RPMs are output into the <code>/root/rpmbuild/RPMS/x86_64</code> directory.</p>
+<p>If the RPM does not build, it is important that the following be checked:</p>
+<ul>
+<li>
+<p>The <code>Source</code> parameter of the kernel RPM specification file <em>must</em> be the filename of the compressed tar archive containing the source code for the module, located in <code>/root/rpmbuild/SOURCES</code>.</p>
+</li>
+<li>
+<p>The <code>%prep</code> section of the example specification file relies on the compressed tar archive, when expanded, creating a directory named <code>&lt;module-name&gt;-&lt;module-version&gt;</code>.     If this is not the case, (for example, if it creates a directory named <code>&lt;module-version&gt;</code>), the <code>%setup -q -n</code> step can be amended to be, for example, <code>%setup -q -n %{version}</code>.</p>
+</li>
+<li>
+<p>The <code>%build</code> section of the example specification file relies on the directory <code>/root/rpmbuild/SOURCES/&lt;module-name&gt;-&lt;module-version&gt;/</code> containing the Makefile or KMake file that will build the kernel module <code>&lt;module-name&gt;</code>.
+    If this Makefile is in a subdirectory, the <code>%build</code> section will need a <code>cd &lt;subdirectory-name&gt;</code> step added to it, before the <code>%{__make}</code> step. Similarly, you will need to add the same step into the <code>%install</code> section.</p>
+</li>
+<li>
+<p>If, for any reason, the Makefile included in the compressed tar archive needs to be heavily patched in order to work correctly with the DDK, Citrix suggests that a new version of the file be created, with the appropriate fixes, then a patch generated using the <code>diff</code> command.
+    This patch can then be applied in the <code>%prep</code> section of the specification file, immediately following the <code>%setup</code> step.</p>
+</li>
+<li>
+<p>If the kernel module itself fails to compile, (rather than the RPMs failing to build), it may be that the source being used is incompatible with the kernel version that is used in XenServer.
+    In this case, the author of the driver should be contacted.</p>
+</li>
+</ul>
+<h2 id="including-driver-rpms-in-supplemental-packs">Including driver RPMs in supplemental packs<a class="headerlink" href="#including-driver-rpms-in-supplemental-packs" title="Permanent link">&para;</a></h2>
+<p>The next chapter details exactly how to include not only driver RPMs produced in the above manner in a supplemental pack, but also any other arbitrary RPMs.
+If a pack is only to include driver RPMs plus some associated configuration or firmware, it can be produced directly by using the Makefile <code>$(ISO)</code> target, which runs the <code>build-update</code> script.
+The script is run with the appropriate arguments to include the metadata that was given in the Makefile.</p>
+<h2 id="format-for-releasing-drivers">Format for releasing drivers<a class="headerlink" href="#format-for-releasing-drivers" title="Permanent link">&para;</a></h2>
+<p>If a supplemental pack contains drivers, it must also be shipped with the source code to those drivers, to fulfill obligations under the GNU General Public License (GPL).
+Citrix recommends that pack authors create a zip file containing the pack ISO, a compressed archive of any relevant source code, and the MD5 checksum files that are associated with the pack metadata and the ISO, produced by <code>build-update</code>.</p>
+<h2 id="releasing-multiple-drivers-in-a-single-pack-">Releasing multiple drivers in a single pack-<a class="headerlink" href="#releasing-multiple-drivers-in-a-single-pack-" title="Permanent link">&para;</a></h2>
+<p>Server hardware manufacturers may wish to issue a single supplemental pack that contains multiple drivers.
+Three options are available, depending on the desired result:</p>
+<ul>
+<li>
+<p>Make individual copies of the <code>/root/examples/driver</code> directory, one for each driver.
+    Then produce the two RPMs for each driver using the <code>build</code> target in the <code>Makefile</code>.
+    Collect all the RPMs into one place, and then run <code>build-supplemental-pack.sh</code>.</p>
+</li>
+<li>
+<p>Create a specification file for each driver (similar to that in <code>/root/examples/driver</code>).
+    Adjust the <code>Makefile</code> to compile all the drivers and produce RPMs for each one, and then run <code>build-supplemental-pack.sh</code>.</p>
+</li>
+</ul> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../installing-packs/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../creating-a-pack/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Creating a supplemental pack - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Creating a supplemental pack";
+      var mkdocs_page_input_path = "creating-a-pack.md";
+      var mkdocs_page_url = "/creating-a-pack/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Creating a supplemental pack</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#creating-a-supplemental-pack" style="padding:0px;position: relative;">&nbsp;Creating a supplemental pack</a></li>
+                
+                    <li><a class="toctree-l4" href="#syntax-of-build-update" style="padding:0px;position: relative;">Syntax of build-update</a></li>
+                
+                    <li><a class="toctree-l4" href="#a-brief-example" style="padding:0px;position: relative;">A brief example</a></li>
+                
+                    <li><a class="toctree-l4" href="#adding-files-to-server-status-reports" style="padding:0px;position: relative;">Adding files to Server Status Reports</a></li>
+                
+                    <li><a class="toctree-l4" href="#automating-pack-installation-at-xenserver-installation-time" style="padding:0px;position: relative;">Automating pack installation at XenServer installation time</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Creating a supplemental pack</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="creating-a-supplemental-pack">Creating a supplemental pack<a class="headerlink" href="#creating-a-supplemental-pack" title="Permanent link">&para;</a></h1>
+<p>Supplemental packs can be created containing existing RPMs provided they meet the requirements given below.
+If standard packages that are not shipped in XenServer are to be included, these should be from the appropriate CentOS distribution that the XenServer dom0 is based upon.
+In XenServer 7.3, this is CentOS 7.2. Alternatively, components can packaged as RPMs using a custom spec file.</p>
+<p>If a pack will only contain drivers, it is normally known as a XenServer Driver Disk.
+However, the mechanisms used to build and install a driver disk are the same as for any other supplemental pack.
+One key point is that for drivers, the source code must be provided to the DDK, in order that the drivers be compiled for the correct kernels.
+For other pack components, no such compilation is necessary.</p>
+<h2 id="syntax-of-build-update">Syntax of build-update<a class="headerlink" href="#syntax-of-build-update" title="Permanent link">&para;</a></h2>
+<p>All supplemental packs are constructed using the <code>/usr/bin/build-update</code> script.
+This provides a simple way to provide metadata about the pack, by taking a number of options and arguments.
+The significance of each one is discussed in the sections that follow.</p>
+<p>Apart from the metadata switches, any further arguments to <code>build-update</code> are taken to be names of the RPMs to be included in the supplemental pack.</p>
+<h3 id="name-vendor-and-version-information">Name, vendor, and version information<a class="headerlink" href="#name-vendor-and-version-information" title="Permanent link">&para;</a></h3>
+<p>Basic details concerning the pack authoring organization, name, and version number must be provided. The relevant switches are:</p>
+<ul>
+<li>
+<p><code>--uuid</code>: a universal unique identifier generated by the <strong>uuidgen</strong> command.</p>
+</li>
+<li>
+<p><code>--label</code>: an identifier that identifies the pack.</p>
+</li>
+<li>
+<p><code>--text</code>: a free text string describing the pack (enclosed by double quote marks).</p>
+</li>
+<li>
+<p><code>--version</code>: the pack version (likely to be of the form 1.2.3).</p>
+</li>
+</ul>
+<h3 id="declaring-pack-dependencies">Declaring Pack dependencies<a class="headerlink" href="#declaring-pack-dependencies" title="Permanent link">&para;</a></h3>
+<p>Supplemental Packs should describe the version of XenServer to which they are compatible. This is done using the <code>--base-requires</code> switch:</p>
+<div class="codehilite"><pre><span></span> --base-requires “product-version=x.x.x”
+</pre></div>
+
+
+<h2 id="a-brief-example">A brief example<a class="headerlink" href="#a-brief-example" title="Permanent link">&para;</a></h2>
+<p>As an illustration of how <code>build-update</code> works, pack authors can create an example pack by placing all constituent RPMs in a directory:</p>
+<div class="codehilite"><pre><span></span>mkdir packages
+cd packages
+cp /root/rpmbuild/RPMS/x86_64/helloworld-1.0-1.x86_64.rpm .
+</pre></div>
+
+
+<p>The pack metadata is then created, using the script.</p>
+<div class="codehilite"><pre><span></span>build-update --uuid 3fbce6cf-5cd2-4d32-9602-e8122c562169 --label example pack --version 1.0.0 \
+--description &quot;An Example Pack&quot; --base-requires &quot;product version=7.3.0&quot; \
+--key &quot;Example Updates (update) &lt;example@example.com&gt;&quot; --keyfile /root/RPM-GPG-KEY-XS-DDK-TEST \
+-o example.iso *.rpm
+</pre></div>
+
+
+<p>A CD image should then be made from the contents of this directory.</p>
+<h2 id="adding-files-to-server-status-reports">Adding files to Server Status Reports<a class="headerlink" href="#adding-files-to-server-status-reports" title="Permanent link">&para;</a></h2>
+<p>XenServer provides a convenient mechanism for users to collect a variety of debugging information when opening a support case, known as a Server Status Report in XenCenter, or <code>xen-bugtool</code> on the CLI.
+To aid partners in supporting their supplemental packs, it is recommended that pack authors add to the list of files collected as part of these Status Reports, using the method outlined below.</p>
+<p>Server Status Reports can include not only files, such as logs, but also the outputs of any normal scripts or commands that are run in the control domain (dom0).
+For convenience, the items collected as part of a Report are divided into categories.
+For example, the Network Configuration category collects the output of tools such as <code>ifconfig</code>, as well as network configuration files.
+Citrix recommends that pack authors create new categories if appropriate, but also consider adding to existing categories.</p>
+<p>As an example, partner Acmesoft, who produce software that manages the configuration of a special network card, might wish to create a category called Acmesoft, under which various Acmesoft-specific log files are collected.
+However, they might also wish to add (other) files related to networking to the Network Configuration category, as it makes most sense from a user perspective that they be collected as part of this category.</p>
+<p>Each category has a level of confidentiality attached to it, which expresses how much personally identifiable information (PII) might be present in the files that are collected as part of that capability.
+This ensures that users are made aware before they send Status Reports to support teams of what they might be disclosing.
+There are four levels of confidentiality: no PII, possibly some PII if the file to be collected has been customized, possibly contains some PII, and definitely contains
+PII.</p>
+<h3 id="extending-an-existing-category">Extending an existing category<a class="headerlink" href="#extending-an-existing-category" title="Permanent link">&para;</a></h3>
+<p>To extend an existing category, an XML file should be created in <code>/etc/xensource/bugtool/&lt;category&gt;/</code> directory (where &lt;<em>category</em>&gt; is the category name).
+Three elements within an outer <code>&lt;collect&gt;</code> element will be supported:</p>
+<ul>
+<li>
+<p><code>files</code>: a list of one or more files (separated by spaces, hence no spaces are allowed within the file names).</p>
+</li>
+<li>
+<p><code>directory</code>: a directory to be collected, with (optionally) a pattern that will be used to filter objects within.
+    The pattern must be a valid Python regular expression.
+    The <code>negate</code> attribute allows the sense of the pattern to be inverted: this attribute is provided for ease of readability purposes, as negation could also be included
+    in the regular expression itself.</p>
+</li>
+<li>
+<p><code>command</code>: a command to be executed and its output collected.
+    The optional <code>label</code> attribute specifies a name for the output file.
+    If this is not specified, the command name will be used.</p>
+</li>
+</ul>
+<p>For example:</p>
+<div class="codehilite"><pre><span></span>    <span class="nt">&lt;collect&gt;</span>
+      <span class="nt">&lt;files&gt;</span>file1 file2<span class="nt">&lt;/files&gt;</span>
+      <span class="nt">&lt;directory</span> <span class="na">pattern=</span><span class="s">&quot;.*\.txt$&quot;</span> <span class="na">negate=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>dir<span class="nt">&lt;/directory&gt;</span>
+      <span class="nt">&lt;command</span> <span class="na">label=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>cmd<span class="nt">&lt;/command&gt;</span>
+    <span class="nt">&lt;/collect&gt;</span>
+</pre></div>
+
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>When extending existing categories, any files added should have the same (or lower) confidentiality levels as the category in question.</p>
+</blockquote>
+<p>Existing categories are:</p>
+<table>
+<thead>
+<tr>
+<th>Category name</th>
+<th>Description</th>
+<th>PII level</th>
+<th>Collected by default?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVSM</td>
+<td>Citrix StorageLink configuration</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>disk-info</td>
+<td>Disk information</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>firstboot</td>
+<td>First-boot scripts</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>hardware-info</td>
+<td>Hardware information</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>high-availability</td>
+<td>High availability</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>host-crashdump-dumps</td>
+<td>Crash dump files</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>host-crashdump-logs</td>
+<td>Crash dump logs</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>kernel-info</td>
+<td>Kernel information</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>loopback-devices</td>
+<td>Loopback devices</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>multipath</td>
+<td>Multipathing configuration</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>network-status</td>
+<td>Network scripts</td>
+<td>If customized</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>pam</td>
+<td>Authentication module configuration</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>process-list</td>
+<td>Process listing</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>persistent-stats</td>
+<td>Persistent statistics</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>system-logs</td>
+<td>System logs</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>system-services</td>
+<td>System services</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>tapdisk-logs</td>
+<td>Storage subsystem logs</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>vncterm</td>
+<td>VNCTerm crash dumps</td>
+<td>Maybe</td>
+<td>No</td>
+</tr>
+<tr>
+<td>wlb</td>
+<td>Workload Balancing status</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XYes1</td>
+<td>X server logs</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XYes1-auth</td>
+<td>X11 authority</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>xapi-subprocess</td>
+<td>XenServer daemon subprocesses</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XenServer-config</td>
+<td>XenServer configuration</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XenServer-domains</td>
+<td>XenServer domains list</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XenServer-databases</td>
+<td>XenServer database</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XenServer-install</td>
+<td>XenServer installation log files</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>XenServer-logs</td>
+<td>XenServer logs</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>xen-info</td>
+<td>Hypervisor configuration</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>xha-liveset</td>
+<td>High availability liveset</td>
+<td>Maybe</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>yum</td>
+<td>RPM package database</td>
+<td>If customized</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>A number of other categories exist: these are purely for development and test purposes, and should therefore not be extended by supplemental packs.</p>
+<h3 id="adding-new-categories">Adding new categories<a class="headerlink" href="#adding-new-categories" title="Permanent link">&para;</a></h3>
+<p>To add a new category, an XML file should be created with the name <code>/etc/xensource/bugtool/&lt;category&gt;.xml</code> (where &lt;<em>category</em>&gt; is the new category name).
+It should contain a single <code>&lt;capability&gt;</code> element, with the following optional attributes:</p>
+<ul>
+<li>
+<p><code>pii</code>: the degree of confidentiality that is inherent in the files to be collected (personally identifiable information).
+    This must be set to one of <code>no</code> (no PII), <code>if_customized</code> (PII would only be present if the file has been customized by the user), <code>maybe</code> (PII may be present in this file), or <code>yes</code> (there is a very high likelihood of PII being present).</p>
+</li>
+<li>
+<p><code>min_size</code>: the minimum size (in bytes) of the data collected by this category.</p>
+</li>
+<li>
+<p><code>max_size</code>: the maximum size (in bytes) of the data collected by this category.</p>
+</li>
+<li>
+<p><code>min_time</code>: the minimum time (in seconds) that the commands are expected to take to run to completion.</p>
+</li>
+<li>
+<p><code>max_time</code>: the maximum time (in seconds) that the commands are expected to take to run to completion.</p>
+</li>
+<li>
+<p><code>mime</code>: the MIME type of the data to be collected. This must be one of <code>application/data</code> or <code>text/plain</code>.</p>
+</li>
+<li>
+<p><code>checked</code>: specifies whether this category is to be collected by default (set to <code>true</code>) or not (set to <code>false</code>).</p>
+</li>
+<li>
+<p><code>hidden</code>: when set to <code>true</code>, this category will only be collected if explicitly requested on the CLI. It will not be visible in XenCenter.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>If the data to be collected by a capability exceeds the constraints placed upon it (that is, the maximum size of data to be collected is higher than <code>max_size</code>), then the data is <em>not</em> collected. The <code>min_size</code> and <code>min_time</code> attributes are purely for user information: if the amount of data collected, or time taken for its collection, is less than these attributes, the data <em>is</em> collected.</p>
+</blockquote>
+<p>The data to be collected as part of this category should be specified by one or more XML files located in the <code>/etc/xensource/bugtool/&lt;category&gt;/</code> directory, as described in the previous section.</p>
+<p>At present, XenCenter displays any new categories that are added by supplemental packs, but does not provide a mechanism for pack authors to give descriptions of them in the Server Status Report dialogue.
+Pack authors should therefore ensure that any new categories have suitably descriptive names.</p>
+<h2 id="automating-pack-installation-at-xenserver-installation-time">Automating pack installation at XenServer installation time<a class="headerlink" href="#automating-pack-installation-at-xenserver-installation-time" title="Permanent link">&para;</a></h2>
+<p>If a partner has obtained the necessary agreement from Citrix to distribute XenServer, it is possible to create a modified installation ISO that contains the XenServer installation files, plus one or more supplemental packs.
+This allows a partner to distribute a single ISO that can seamlessly install XenServer and the supplemental pack(s).
+There are two steps to this process: the first involves combining the installation ISO with the pack ISO; the second requires an answerfile to be created.</p>
+<h3 id="including-an-answerfile-on-the-xenserver-installation-iso">Including an answerfile on the XenServer installation ISO<a class="headerlink" href="#including-an-answerfile-on-the-xenserver-installation-iso" title="Permanent link">&para;</a></h3>
+<p>Answerfiles allow the responses to all the questions posed by the XenServer installer to be specified in an XML file, rather than needing to run the installer in interactive mode.
+The XenServer DDK includes a script to add an answerfile to the XenServer main installation ISO, to allow installation to be carried out in an unattended fashion.
+The <code>/usr/local/bin/rebuild-iso.sh</code> script can be used within the DDK (though the default root disk size within the DDK is unlikely to be sufficient to perform the necessary ISO re-packing operations, and hence network storage is recommended).
+Alternatively, the script, plus <code>/usr/local/bin/rebuild.functions</code>, can be copied to an external machine that has <code>mkisofs</code> installed, and used there.</p>
+<p>The <code>rebuild-iso.sh</code> script takes in the XenServer installation ISO, plus the files to be added to it, and outputs a combined ISO. Its syntax is:</p>
+<div class="codehilite"><pre><span></span>rebuild-iso.sh
+       [--answerfile=&lt;answerfile&gt;]
+       [--include=&lt;file&gt;|&lt;directory&gt;]
+       [--label=&lt;ISOLabel&gt;]
+       inputFile.iso outputFile.iso
+</pre></div>
+
+
+<p>The &lt;<em>answerfile</em>&gt; must be a valid XenServer automated installation file.
+Details of the syntax of this file are given in the relevant section of the XenServer Installation Guide.
+As part of an answerfile, it is possible to specify scripts that may be run directly after the installation completes.
+Whilst such scripts can be on a web server, it is also possible to place them on the ISO, with the answerfile.
+The <code>--include</code> switch allows such files to be added to the ISO output by <code>rebuild-iso.sh</code>. Finally, the <code>--label</code> switch controls what the volume label of the resulting ISO should be.
+If no label is specified, the label of the input ISO is used.</p>
+<p>It is worth noting that whilst an answerfile specifies the answers to
+installation questions such as keyboard layout and target disks, it does
+not specify which repositories to install from. This is because for an
+automated installation, all repositories specified in the
+<code>XS-REPOSITORY-LIST</code> file are installed. Therefore, provided that all
+supplemental packs that are to be installed are included in the
+<code>XS-REPOSITORY-LIST</code> file, they will be installed automatically directly
+following the installation of XenServer itself.</p> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../producing-rpms/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../rules-and-guidelines/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

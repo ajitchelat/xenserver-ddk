@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Getting Started - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Getting Started";
+      var mkdocs_page_input_path = "getting-started.md";
+      var mkdocs_page_url = "/getting-started/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Getting Started</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#getting-started" style="padding:0px;position: relative;">&nbsp;Getting started</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-xenserver" style="padding:0px;position: relative;">Installing XenServer</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-xencenter" style="padding:0px;position: relative;">Installing XenCenter</a></li>
+                
+                    <li><a class="toctree-l4" href="#connect-xencenter-to-the-xenserver-host" style="padding:0px;position: relative;">Connect XenCenter to the XenServer host</a></li>
+                
+                    <li><a class="toctree-l4" href="#importing-the-ddk-vm-through-xencenter" style="padding:0px;position: relative;">Importing the DDK VM through XenCenter</a></li>
+                
+                    <li><a class="toctree-l4" href="#importing-the-ddk-vm-using-the-cli" style="padding:0px;position: relative;">Importing the DDK VM using the CLI</a></li>
+                
+                    <li><a class="toctree-l4" href="#using-the-ddk-vm" style="padding:0px;position: relative;">Using the DDK VM</a></li>
+                
+                    <li><a class="toctree-l4" href="#adding-extra-packages-to-the-ddk-vm" style="padding:0px;position: relative;">Adding Extra Packages to the DDK VM</a></li>
+                
+                    <li><a class="toctree-l4" href="#accessing-the-ddk-vm-console-from-the-host-console" style="padding:0px;position: relative;">Accessing the DDK VM console from the host console</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Getting Started</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
+<p>This chapter describes how to setup a base XenServer system, running a DDK Virtual Machine (VM), for examining the examples provided in this document, and for use in the development of supplemental packs.
+Partners who wish to construct supplemental packs as part of their own build systems should consult the appropriate section, later in this document.</p>
+<p>The high-level process of setting up a DDK VM to create a supplemental pack is:</p>
+<ol>
+<li>
+<p>Obtain matching XenServer product and DDK build ISOs.</p>
+</li>
+<li>
+<p>Install XenServer onto a host server.</p>
+</li>
+<li>
+<p>Install the XenCenter administrator console onto a Windows-based machine.</p>
+</li>
+<li>
+<p>Use XenCenter to import the DDK onto the XenServer host as a new virtual machine.</p>
+</li>
+</ol>
+<h2 id="installing-xenserver">Installing XenServer<a class="headerlink" href="#installing-xenserver" title="Permanent link">&para;</a></h2>
+<p>Installing XenServer only requires booting from the CD-ROM image, and answering a few basic questions.
+After setup completes, take note of the host IP address shown, as it is required for connection from XenCenter.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Intel VT or AMD-V CPU support is required to run Windows guests, but is not required in order to use the DDK, nor for testing drivers in the XenServer control domain (dom0).</p>
+</blockquote>
+<h2 id="installing-xencenter">Installing XenCenter<a class="headerlink" href="#installing-xencenter" title="Permanent link">&para;</a></h2>
+<p>XenCenter, the XenServer administration console, must be installed on a separate Windows-based machine.
+Inserting the XenServer installation CD will run the XenCenter installer automatically.
+Once installed, the XenCenter console will be displayed with no servers connected.</p>
+<h2 id="connect-xencenter-to-the-xenserver-host">Connect XenCenter to the XenServer host<a class="headerlink" href="#connect-xencenter-to-the-xenserver-host" title="Permanent link">&para;</a></h2>
+<p>Within XenCenter select the <strong>Server &gt; Add</strong> menu option and supply the appropriate host name/IP address and password for the XenServer host.</p>
+<p>Select the newly connected host in the left-hand tree view.</p>
+<h2 id="importing-the-ddk-vm-through-xencenter">Importing the DDK VM through XenCenter<a class="headerlink" href="#importing-the-ddk-vm-through-xencenter" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>You can also import the DDK directly on the host using the <strong>xe</strong> Command Line Interface (CLI).</p>
+</blockquote>
+<ul>
+<li>
+<p>Insert the DDK CD into the CD-ROM drive of the machine running XenCenter.</p>
+</li>
+<li>
+<p>On the <strong>VM</strong> menu, select the <strong>Import</strong> option. The VM Import Wizard is displayed.</p>
+</li>
+<li>
+<p>Click <strong>Browse</strong> and on the <strong>Files of type</strong> drop-down list, select <strong>XenServer Virtual Appliance Version 1 (ova.xml)</strong>.</p>
+</li>
+<li>
+<p>Navigate to the DDK CD-ROM and select the ova.xml file within the DDK directory.</p>
+</li>
+<li>
+<p>Click <strong>Next</strong> to use the defaults on the Home Server and Storage pages.</p>
+</li>
+<li>
+<p>On the Network page, add a virtual network interface to the VM.</p>
+</li>
+<li>
+<p>Finish the VM Import Wizard.</p>
+</li>
+</ul>
+<p>The DDK VM will be started automatically.</p>
+<h2 id="importing-the-ddk-vm-using-the-cli">Importing the DDK VM using the CLI<a class="headerlink" href="#importing-the-ddk-vm-using-the-cli" title="Permanent link">&para;</a></h2>
+<p>The DDK VM can also be imported directly on the XenServer host using the xe CLI and standard Linux commands to mount the DDK ISO.</p>
+<ul>
+<li>
+<p>Mount the DDK ISO and import the DDK VM:</p>
+<p><code>bash
+mkdir -p /mnt/tmp
+mount &lt;path_to_DDK_ISO&gt;/ddk.iso /mnt/tmp –o loop,ro
+xe vm-import filename=/mnt/tmp/ddk/ova.xml</code></p>
+<p>The universally unique identifier (UUID) of the DDK VM is returned when the import completes.</p>
+</li>
+<li>
+<p>Add a virtual network interface to the DDK VM:</p>
+<p><code>bash
+xe network-list</code></p>
+<p>Note the UUID of the appropriate network to use with the DDK VM, typically this will be the network with a <code>name-label</code> of <code>Pool-wide network associated with eth0</code>.</p>
+<p><code>bash
+xe vif-create network-uuid=&lt;network_uuid&gt; vm-uuid=&lt;ddk_vm_uuid&gt; device=0</code></p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Use tab completion to avoid entering more than the first couple of characters of the UUIDs.</p>
+</blockquote>
+</li>
+<li>
+<p>Start the DDK VM:</p>
+<p><code>bash
+xe vm-start uuid=&lt;ddk_vm_uuid&gt;</code></p>
+</li>
+</ul>
+<h2 id="using-the-ddk-vm">Using the DDK VM<a class="headerlink" href="#using-the-ddk-vm" title="Permanent link">&para;</a></h2>
+<p>Select the DDK VM in the left pane and then select the Console tab in the right pane to display the console of the DDK VM to provide a terminal window in which you can work.</p>
+<p>The DDK VM is Linux-based so you are free to use other methods such as ssh to access the DDK VM. You can also access the DDK VM console directly from the host console.</p>
+<h2 id="adding-extra-packages-to-the-ddk-vm">Adding Extra Packages to the DDK VM<a class="headerlink" href="#adding-extra-packages-to-the-ddk-vm" title="Permanent link">&para;</a></h2>
+<p>The DDK is built to be as close as possible to the XenServer control domain (Dom0).
+This means that only a small number of extra packages are present in the DDK (to enable the compilation of kernel modules) as compared to Dom0.
+In some cases, partners who wish to use the DDK as a build environment may wish to add extra packages (e.g. NIS authentication) to the DDK.</p>
+<p>Because the DDK (and Dom0) are based on CentOS, any package that is available for that distribution can be installed into the DDK, using the Yum package manager.
+However, it is necessary to explicitly enable the CentOS repositories to allow such installation.
+Package installation must therefore be carried out using the command:</p>
+<div class="codehilite"><pre><span></span>yum install &lt;packageName&gt;
+</pre></div>
+
+
+<h2 id="accessing-the-ddk-vm-console-from-the-host-console">Accessing the DDK VM console from the host console<a class="headerlink" href="#accessing-the-ddk-vm-console-from-the-host-console" title="Permanent link">&para;</a></h2>
+<p>The DDK VM text console can be accessed directly from the XenServer host console instead of using XenCenter.
+Note that using this method disables access to the DDK console from XenCenter.</p>
+<ul>
+<li>
+<p>While the DDK VM is shut down, disable VNC access on the VM record:</p>
+<div class="codehilite"><pre><span></span>xe vm-param-set uuid=&lt;ddk_vm_uuid&gt; other-config:disable_pv_vnc=1
+</pre></div>
+
+
+</li>
+<li>
+<p>Start the VM</p>
+<div class="codehilite"><pre><span></span>xe vm-start uuid=&lt;ddk_vm_uuid&gt;
+</pre></div>
+
+
+</li>
+<li>
+<p>Retrieve the underlying domain ID of the VM:</p>
+<div class="codehilite"><pre><span></span>xe vm-list params=dom-id uuid=&lt;ddk_vm_uuid&gt; --minimal
+</pre></div>
+
+
+</li>
+<li>
+<p>Connect to the VM text console:</p>
+<div class="codehilite"><pre><span></span>/usr/lib/xen/bin/xenconsole &lt;dom-id&gt;
+</pre></div>
+
+
+</li>
+<li>
+<p>When complete, exit the xenconsole session using <strong>CTRL-]</strong></p>
+</li>
+</ul>
+<p>For more information on using with the xe CLI please see the <em>XenServer Administrator's Guide</em>, available online.</p> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href=".."><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../building-example-packs/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

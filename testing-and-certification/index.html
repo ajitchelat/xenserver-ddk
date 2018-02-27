@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Testing and Certification - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Testing and Certification";
+      var mkdocs_page_input_path = "testing-and-certification.md";
+      var mkdocs_page_url = "/testing-and-certification/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Testing and Certification</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#testing-and-certification" style="padding:0px;position: relative;">&nbsp;Testing and certification</a></li>
+                
+                    <li><a class="toctree-l4" href="#testing-scope" style="padding:0px;position: relative;">Testing scope</a></li>
+                
+                    <li><a class="toctree-l4" href="#running-tests" style="padding:0px;position: relative;">Running tests</a></li>
+                
+                    <li><a class="toctree-l4" href="#tests-that-require-an-integrated-build" style="padding:0px;position: relative;">Tests that require an integrated build</a></li>
+                
+                    <li><a class="toctree-l4" href="#certification-support" style="padding:0px;position: relative;">Certification &amp; support</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Testing and Certification</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="testing-and-certification">Testing and certification<a class="headerlink" href="#testing-and-certification" title="Permanent link">&para;</a></h1>
+<p>XenServer uses a modified Linux kernel that is similar but not identical
+to the kernel distributed by a popular Linux distribution. In contrast,
+the XenServer control domain is currently based on a different
+distribution. In addition, the 32 bit XenServer control domain kernel is
+running above the 80K lines of code that are the 64 bit Xen hypervisor
+itself. While Citrix is very confident in the stability of the
+hypervisor, its presence represents a different software installation
+than exists with the stock vendor kernel installed on bare hardware.</p>
+<p>In particular, there are issues that may be taken for granted on an x86
+processor, such as the difference between physical and device bus memory
+addresses (for example <strong>virt_to_phys()</strong> as opposed to
+<strong>virt_to_bus()</strong>), timing, and interrupt delivery which may have
+subtle differences in a hypervisor environment.</p>
+<p>For these reasons hardware drivers should be exposed to a set of testing
+on the XenServer control domain kernel to ensure the same level of
+confidence that exists for drivers in enterprise distribution releases.
+Similarly, userspace software that is included in supplemental packs
+must be tested comprehensively, to ensure that the assumptions it makes
+about the environment in which it runs (for example, concerning the
+presence of certain executables) are not invalidated.</p>
+<p>The remainder of this section considers driver testing. Partners who
+wish to release supplemental packs do not only contain drivers should
+contact Citrix for advice. As a minimum, such pack authors should expect
+to comprehensively test the functionality of the software being included
+in the pack, as well as perform stress testing of the XenServer major
+features, to ensure that none are impacted by the software in the pack.</p>
+<h2 id="testing-scope">Testing scope<a class="headerlink" href="#testing-scope" title="Permanent link">&para;</a></h2>
+<p>Assuming the driver in question has already undergone verification
+testing on a Linux distribution very similar to the one used in the
+XenServer control domain, a subset of the verification test suite with a
+focus on representative tests is typically sufficient.</p>
+<p>Some common areas of focus are:</p>
+<ul>
+<li>
+<p><em>Installation verification.</em> Installation is now performed using an
+    RPM, which may be different from how the driver is typically
+    installed.</p>
+</li>
+<li>
+<p><em>CLI operation.</em> If a CLI is included, its operation is a key
+    scenario and typically provides a good end-to-end exercising of all
+    related code.</p>
+</li>
+<li>
+<p><em>Adapter configuration, non-volatile/flash RAM, or BIOS upgrades.</em>
+    Any functions that access the physical hardware should be verified
+    due to the presence of the Xen hypervisor and its role in
+    coordination of hardware resources amongst virtual machines.</p>
+</li>
+<li>
+<p><em>Data integrity and fault injection.</em> Long-haul and/or stress-based
+    data integrity verification tests to verify no data corruption
+    issues exist. Basic fault injection tests such as cable
+    un-plug/re-plug and timeout handling for verification of common
+    error conditions.</p>
+</li>
+<li>
+<p><em>Coverage of a representative set of device models.</em> For example, if
+    a Fibre Channel HBA driver supports a set of models that operate at
+    either 2 Gb/s or 4 Gb/s, include one model each from the 2 Gb/s and
+    4 Gb/s families for testing.</p>
+</li>
+<li>
+<p><em>Key hardware configuration variations.</em> Any hardware configurations
+    that exercise the driver or related code in significantly different
+    ways should be run, such as locally versus remotely attached
+    storage.</p>
+</li>
+</ul>
+<h2 id="running-tests">Running tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
+<p>Since the physical device drivers run in the XenServer control domain,
+the majority of tests will also be run in the control domain. This
+allows simple re-use of existing Linux-based tests.</p>
+<p>To provide high-performance device I/O to guest domains, XenServer
+includes synthetic device drivers for storage and networking that run in
+a guest and communicate their I/O requests with corresponding back-end
+drivers running in the control domain. The back-end drivers then issue
+the I/O requests to the physical drivers and devices and manage
+transmitting results and completion notifications to the synthetic
+drivers. This approach provides near bare-metal performance.</p>
+<p>As a result, tests that require direct access to the device will fail
+when run within a guest domain. However, running load-generation and
+other tests that do not require direct access to the device and/or
+driver within Linux and Windows guest domains is very valuable as such
+tests represent how the majority of load will be processed in actual
+XenServer installations.</p>
+<p>When running tests in guest domains, ensure that you do so with the
+XenServer synthetic drivers installed in the guest domain. Installation
+of the synthetic drivers is a manual process for some guests. See
+XenServer Help for more details.</p>
+<h2 id="tests-that-require-an-integrated-build">Tests that require an integrated build<a class="headerlink" href="#tests-that-require-an-integrated-build" title="Permanent link">&para;</a></h2>
+<p>One of the primary goals of the DDK is to allow partners to create,
+compile, and test their drivers with XenServer without requiring a
+“back-and-forth” of components with the XenServer engineering team.</p>
+<p>However, some tests will only be possible after the driver RPMs and any
+accompanying binary RPMs have been supplied to Citrix and integrated
+into the XenServer product. Two examples are installing to, and booting
+from, Fibre Channel and iSCSI LUNs.</p>
+<p>In these cases additional coordination is required after the components
+have been provided to Citrix to provide a pre-release XenServer build
+with the integrated components for testing.</p>
+<h2 id="certification-support">Certification &amp; support<a class="headerlink" href="#certification-support" title="Permanent link">&para;</a></h2>
+<h3 id="drivers">Drivers<a class="headerlink" href="#drivers" title="Permanent link">&para;</a></h3>
+<p>Citrix maintains a XenServer Hardware Compatibility List (HCL), found at
+<a href="http://hcl.vmd.citrix.com">hcl.vmd.citrix.com</a>. This lists all devices
+that have been tested and confirmed to function correctly with the
+XenServer product.</p>
+<p>In order to be listed on the XenServer HCL, hardware vendors must
+utilize the appropriate certification kit, obtainable from
+<a href="http://www.citrix.com/ready/hcl">http://www.citrix.com/ready/hcl</a>. The test kits contain a mix of manual
+and automated tests that are run on a host that contains the hardware to
+be certified. In general, two such hosts are required to perform the
+tests. Test results are submitted to Citrix for validation, and if they
+are approved, the device is listed on the HCL within a small number of
+working days, along with a link to the supplemental pack that contains
+any necessary driver, if this has not yet been incorporated into the
+XenServer product. In general, such supplemental packs will be hosted on
+partner web sites, though Citrix may additionally opt to link to (or
+host) the pack on its own Knowledge Base site.</p>
+<p>For certification of converged or hybrid devices, such as CNAs, <em>each</em>
+function of the device must be separately certified. This implies that
+for a device with both networking and storage (HBA) functionality, both
+the networking certification tests and the storage certification tests
+must be carried out.</p>
+<p>There is no restriction on who is permitted to submit certifications to
+the XenServer HCL, for example, it is <em>not</em> the case that only the
+hardware vendor can submit certifications for their products. Having
+said this, Citrix strongly prefers hardware vendors to perform
+certification testing, as they are best placed to test all of their
+products' features.</p>
+<p>Once a device is listed on the HCL, Citrix will take support calls from
+customers who are using that device with XenServer. It is expected that
+partners who submit devices for inclusion in the HCL will collaborate
+with Citrix to provide a fix for any issue that is later found with
+XenServer which is caused by said device.</p>
+<h3 id="userspace-software">Userspace software<a class="headerlink" href="#userspace-software" title="Permanent link">&para;</a></h3>
+<p>At present, supplemental packs that contain userspace software to be
+installed into dom0 may only be issued by partners who have agreements
+in place with Citrix where the partner provides level 1 and level 2
+support to their customers.</p>
+<p>The reason for this is because Citrix will not necessarily have had the
+opportunity to test a supplemental pack of a partner, and hence must
+rely on partner testing of the pack as installed on XenServer.
+Therefore, only partners who perform testing that has been agreed as
+sufficient by Citrix can ship supplemental packs. If a customer installs
+a pack that is not from an approved partner, their configuration will be
+deemed unsupported by Citrix: any issues found will need to be
+reproduced on a standard installation of XenServer, without the pack
+installed, if support is to be given.</p>
+<p>Partners who wish to produce supplemental packs that contain more than
+solely drivers should discuss this with their Citrix relationship
+manager as early as possible, in order to discuss what software is
+appropriate for inclusion, and what testing should be performed.</p> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../rules-and-guidelines/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../additional-resources/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>
