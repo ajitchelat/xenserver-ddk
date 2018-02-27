@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Building the example packs - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Building the example packs";
+      var mkdocs_page_input_path = "building-example-packs.md";
+      var mkdocs_page_url = "/building-example-packs/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Building the example packs</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#building-the-example-packs" style="padding:0px;position: relative;">&nbsp;Building the example packs</a></li>
+                
+                    <li><a class="toctree-l4" href="#test-signing-key-generation" style="padding:0px;position: relative;">Test Signing Key Generation</a></li>
+                
+                    <li><a class="toctree-l4" href="#installing-the-test-key" style="padding:0px;position: relative;">Installing the Test Key</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Building the example packs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="building-the-example-packs">Building the example packs<a class="headerlink" href="#building-the-example-packs" title="Permanent link">&para;</a></h1>
+<p>To make the process of building an Update package as easy as possible, we have included a number of examples in the Driver Development Kit (DDK), which Citrix makes available to our partners with each build.</p>
+<p>Import the DDK onto the XenServer host.
+Refer to the instructions described in <code>/root/examples/README.txt</code>, which outlines the example scripts for generating GPG test keys as well as the various configuration options for generating a pack.</p>
+<p>For most cases, copying the example build files and customizing them with pack specific information should be sufficient.</p>
+<p><strong>Pack UUIDs</strong>: Each pack will have a UUID included in the metadata, which is required to build an Update package.
+The UUID must be unique to the Update being generating:</p>
+<ul>
+<li>
+<p>The same UUID should not refer to different Updates.</p>
+</li>
+<li>
+<p>The same Update should not have multiple UUIDs.</p>
+</li>
+</ul>
+<p>A number of examples are supplied in the DDK under <code>/root/examples</code>.
+These include:</p>
+<ul>
+<li>
+<p><strong>Userspace</strong>: a simple example of a pack containing only programs and files that relate to a userspace.</p>
+</li>
+<li>
+<p><strong>Driver</strong>: a simple kernel driver.</p>
+</li>
+<li>
+<p><strong>Combined</strong>: an example which contains kernel and userspace files.</p>
+</li>
+</ul>
+<p>There are specific rules for packaging kernel device drivers.
+For more information, see <a href="../rules-and-guidelines/">Rules and guidelines</a>.</p>
+<p>Within each directory there is a:</p>
+<ul>
+<li>
+<p><strong>Source tree</strong>: a directory containing a collection of files.</p>
+</li>
+<li>
+<p><strong>Specification file</strong>: a file that describes how to build an RPM.</p>
+</li>
+<li>
+<p><strong>Makefile</strong>: a file used to automate the creation of a supplemental pack.</p>
+</li>
+</ul>
+<p>To build a specific example, use the following commands:</p>
+<div class="codehilite"><pre><span></span>cd /root/example/&lt;dir&gt;
+make
+</pre></div>
+
+
+<p>This will result in the following files being created:</p>
+<ul>
+<li><strong>&lt;<em>pack</em>&gt;.iso</strong> - the supplemental pack CD image.</li>
+</ul>
+<p>Where &lt;<em>pack</em>&gt; is the name of the pack.</p>
+<h2 id="test-signing-key-generation">Test Signing Key Generation<a class="headerlink" href="#test-signing-key-generation" title="Permanent link">&para;</a></h2>
+<p>When the first example pack is built, a new GnuPG key pair is created.
+You will be prompted for a passphrase that must be entered whenever the
+private key is used to sign a pack. This key pair is only intended for
+developer testing. See --- for information on generating the key pair to
+use for released Supplemental packs.</p>
+<p>To allow partners to release software that is installable in Dom0,
+Citrix requires partners provide us with the public key corresponding to
+their GPG key pair generated with the following requirements:</p>
+<ul>
+<li>
+<p>ASD Type = RSA</p>
+</li>
+<li>
+<p>Bits = 2048</p>
+</li>
+<li>
+<p>Expiry date = preferably none, else &gt;10 years.</p>
+</li>
+<li>
+<p>No support for subkeys as RPM does not handle this properly.</p>
+</li>
+<li>
+<p>Naming convention: RPM-GPG-KEY-&lt;VENDOR&gt;</p>
+</li>
+</ul>
+<h2 id="installing-the-test-key">Installing the Test Key<a class="headerlink" href="#installing-the-test-key" title="Permanent link">&para;</a></h2>
+<p>Before a pack that has been signed with a test key can be installed on
+any XenServer hosts, the public key must be imported into the host on
+which the pack should be installed.</p>
+<ol>
+<li>
+<p>Copy the public key from the DDK VM to the host using the following
+    command:</p>
+<div class="codehilite"><pre><span></span> DDK# scp /root/RPM-GPG-KEY-DDK-Test root@XenServer:
+</pre></div>
+
+
+</li>
+<li>
+<p>Import the key on the host using the following command:</p>
+<div class="codehilite"><pre><span></span> XS# /opt/xensource/debug/import-update-key RPM-GPG-KEY-DDK-Test
+</pre></div>
+
+
+</li>
+</ol>
+<blockquote>
+<p>Note</p>
+<p>To allow developer testing, a script is now included in Dom0 that enables our partners to import an update key manually:</p>
+<p><code>bash
+/opt/xensource/debug/import-update-key &lt;PATH-TO-KEY-FILE&gt;</code></p>
+</blockquote> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../getting-started/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../installing-packs/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Installing supplemental packs - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Installing supplemental packs";
+      var mkdocs_page_input_path = "installing-packs.md";
+      var mkdocs_page_url = "/installing-packs/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Installing supplemental packs</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#installing-supplemental-packs" style="padding:0px;position: relative;">&nbsp;Installing supplemental packs</a></li>
+                
+                    <li><a class="toctree-l4" href="#at-installation-time" style="padding:0px;position: relative;">At installation time</a></li>
+                
+                    <li><a class="toctree-l4" href="#on-a-running-host" style="padding:0px;position: relative;">On a running host</a></li>
+                
+                    <li><a class="toctree-l4" href="#driver-specific-considerations" style="padding:0px;position: relative;">Driver-specific considerations</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Installing supplemental packs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="installing-supplemental-packs">Installing supplemental packs<a class="headerlink" href="#installing-supplemental-packs" title="Permanent link">&para;</a></h1>
+<p>You can install a supplemental pack at the same time as installing XenServer or you can install a supplemental pack on a running XenServer instance.</p>
+<h2 id="at-installation-time">At installation time<a class="headerlink" href="#at-installation-time" title="Permanent link">&para;</a></h2>
+<p>You can install supplemental packs while installing XenServer on a host in one of two ways:</p>
+<ol>
+<li>
+<p>From a CD – during an interactive installation from local media you will be asked if you want to install any supplemental packs.
+    Any number of packs can be installed in succession.</p>
+</li>
+<li>
+<p>From a Network repository – a HTTP, FTP or NFS repository can be expanded to include one or more supplemental packs.
+    See the XenServer Installation Guide for instructions on how to extract a supplemental pack to a directory.</p>
+</li>
+</ol>
+<p>If a driver needs to be loaded from a supplemental pack before the XenServer installation can proceed (for example, to support a new RAID
+controller), the user should press the F9 key when prompted by the installer.
+The media containing the supplemental pack/driver disk can then be provided, and the installer will attempt to load the new driver.</p>
+<p>The XenServer installer will allow the user to choose to verify a pack before it is installed.
+The installer will check the contents of the pack against internal checksums produced when the pack was created.</p>
+<h2 id="on-a-running-host">On a running host<a class="headerlink" href="#on-a-running-host" title="Permanent link">&para;</a></h2>
+<p>Install a supplemental pack by using XenCenter or the xe CLI.</p>
+<h3 id="using-xencenter">Using XenCenter<a class="headerlink" href="#using-xencenter" title="Permanent link">&para;</a></h3>
+<p>To install a supplemental pack using XenCenter:</p>
+<ol>
+<li>
+<p>Download the supplemental pack (<code>filename.iso</code>) to a known location on your computer.
+    Supplemental packs are available to download from the XenServer downloads page.</p>
+</li>
+<li>
+<p>From the XenCenter menu, select <strong>Tools</strong> and then <strong>Install Update</strong>.</p>
+</li>
+<li>
+<p>Read the information on the <strong>Before You Start</strong> page and then select <strong>Next</strong> to continue</p>
+</li>
+<li>
+<p>On the <strong>Select Update</strong> page, click <strong>Add</strong> to add the supplemental pack.</p>
+</li>
+<li>
+<p>On the <strong>Select Servers</strong> page, select the XenServer host or the pool to which you would like to apply the supplemental pack and then click <strong>Next</strong>.
+    This uploads the supplemental pack to the host or the pool’s default SR.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>If the default SR in a pool is not shared, or does not have enough space, XenCenter tries to upload the supplemental pack to another shared SR with sufficient space.
+If none of the shared SRs have sufficient space, the supplemental pack will be uploaded to each host's local storage.</p>
+</blockquote>
+</li>
+<li>
+<p>The <strong>Upload</strong> page displays the status of the upload.
+    If there is not enough space on the SR, an error will be displayed.
+    Click <strong>More Info</strong> for details and take necessary action to free up the space required for the upload.</p>
+</li>
+<li>
+<p>After the file is successfully uploaded, XenCenter performs a series of prechecks to determine whether the supplemental pack can be applied onto the selected servers and displays the result.
+    Follow the on-screen recommendations to resolve any update prechecks that have failed.
+    If you would like XenCenter to automatically resolve all failed prechecks, click <strong>Resolve All</strong>.</p>
+</li>
+<li>
+<p>Choose the <strong>Update Mode</strong>. Review the information displayed on the screen and select an appropriate mode.
+    If you click <strong>Cancel</strong> at this stage, the <strong>Install Update</strong> wizard will revert the changes and removes the supplemental pack from the SR.</p>
+</li>
+<li>
+<p>Click <strong>Install update</strong> to proceed with the installation.
+    The <strong>Install Update</strong> wizard shows the progress of the update, displaying the major operations that XenCenter performs while updating each host in the pool.</p>
+</li>
+<li>
+<p>When the supplemental pack has been installed, click <strong>Finish</strong> to close the wizard.</p>
+</li>
+</ol>
+<h3 id="using-cli">Using CLI<a class="headerlink" href="#using-cli" title="Permanent link">&para;</a></h3>
+<p>A Supplemental Pack can be installed remotely using the xe CLI.</p>
+<ol>
+<li>
+<p>Upload the update:</p>
+<div class="codehilite"><pre><span></span> xe update-upload file-name=&lt;pack.iso&gt;
+</pre></div>
+
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The UUID of the pack is returned when the upload completes.</p>
+</blockquote>
+</li>
+<li>
+<p>Apply the pack:</p>
+<div class="codehilite"><pre><span></span> xe update-apply uuid=&lt;pack_uuid&gt;
+</pre></div>
+
+
+<p>A pack can also be installed on the XenServer host by running the following command:</p>
+<div class="codehilite"><pre><span></span> xe-install-supplemental-pack &lt;pack.iso&gt;
+</pre></div>
+
+
+<p>Example syntax for applying an Update package via the CLI:</p>
+<div class="codehilite"><pre><span></span># xe update-upload file-name=test-hotfix-basic-1.iso
+320232df-7adb-4cbe-a7a3-8515240879e1
+# xe update-apply uuid=320232df-7adb-4cbe-a7a3-8515240879e1
+# xe update-list
+
+uuid ( RO): 320232df-7adb-4cbe-a7a3-8515240879e1
+name-label ( RO): test-hotfix-basic-1
+name-description ( RO): Simple basic hotfix with a single package, no guidance
+installation-size ( RO): 32
+hosts (SRO): 4fab6121-ea56-4c27-b4e3-b02aac6c2e28
+after-apply-guidance (SRO):
+</pre></div>
+
+
+</li>
+</ol>
+<h2 id="driver-specific-considerations">Driver-specific considerations<a class="headerlink" href="#driver-specific-considerations" title="Permanent link">&para;</a></h2>
+<p>The XenServer installer, when booted, loads kernel modules that are appropriate to the hardware it has detected.
+If the newer version of a driver is needed in order for the installation to proceed, then the installer version of the module must be unloaded, and the new driver
+loaded from a supplemental pack/driver disk.
+The procedure for this is as follows:</p>
+<ol>
+<li>
+<p>Reboot the host, leaving the XenServer installation CD-ROM in the drive.</p>
+</li>
+<li>
+<p>At the <code>boot:</code> prompt, type:</p>
+<div class="codehilite"><pre><span></span>shell
+</pre></div>
+
+
+</li>
+<li>
+<p>You will now be presented with a command prompt. Type the following:</p>
+<div class="codehilite"><pre><span></span>rmmod &lt;driver-name&gt;
+</pre></div>
+
+
+<p>Where &lt;<em>driver-name</em>&gt; is the name of the driver to be replaced.
+If this command succeeds (that is, if there are no error messages printed), the installer version of the driver has been unloaded.
+If error messages are presented, it is likely that other drivers depend on the driver you are attempting to unload.
+If this is the case, please contact Citrix support.</p>
+</li>
+<li>
+<p>Type</p>
+<div class="codehilite"><pre><span></span>exit
+</pre></div>
+
+
+<p>or press Control+D on your keyboard, to return to the installer.</p>
+</li>
+<li>
+<p>In the installer, press the F9 key when prompted to provide the driver disk, which should now load correctly.</p>
+</li>
+</ol> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../building-example-packs/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../producing-rpms/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

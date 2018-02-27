@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/getting-started/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/building-example-packs/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/installing-packs/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/producing-rpms/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/creating-a-pack/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/rules-and-guidelines/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/testing-and-certification/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/additional-resources/</loc>
+     <lastmod>2018-02-27</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>

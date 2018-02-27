@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Additional Resources - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Additional Resources";
+      var mkdocs_page_input_path = "additional-resources.md";
+      var mkdocs_page_url = "/additional-resources/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../rules-and-guidelines/">Rules and Guidelines</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Additional Resources</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#additional-resources" style="padding:0px;position: relative;">&nbsp;Additional Resources</a></li>
+                
+                    <li><a class="toctree-l4" href="#xen-api-plug-ins" style="padding:0px;position: relative;">Xen API plug-ins</a></li>
+                
+                    <li><a class="toctree-l4" href="#xencenter-plug-ins" style="padding:0px;position: relative;">XenCenter plug-ins</a></li>
+                
+                    <li><a class="toctree-l4" href="#xenserver-sdk" style="padding:0px;position: relative;">XenServer SDK</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Additional Resources</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h1>
+<p>In addition to supplemental packs, a variety of mechanisms are available
+for partners to interface with XenServer, and add value to the user
+experience. This chapter overviews the mechanisms, and provides web
+links to further information.</p>
+<p>If pack authors have any questions concerning what should (or should
+not) be included in a pack, or how a particular customization goal might
+be achieved, they are encouraged to contact their Citrix technical
+account manager.</p>
+<h2 id="xen-api-plug-ins">Xen API plug-ins<a class="headerlink" href="#xen-api-plug-ins" title="Permanent link">&para;</a></h2>
+<p>Whilst the Xen API provides a wide variety of calls to interface with
+XenServer, partners have the opportunity to add to the API by means of
+XAPI plug-ins. These consist of Python scripts that are installed as
+part of supplemental packs, that can be run by using the
+<code>host.call_plugin</code> XAPI call. These plug-ins can perform arbitrary
+operations, including running commands in dom0, and making further XAPI
+calls, using the XAPI Python language bindings.</p>
+<p>For examples of how XAPI plug-ins can be used, please see the example
+plug-ins in the <code>/etc/xapi.d/plugins/</code> directory of a standard XenServer
+installation.</p>
+<h2 id="xencenter-plug-ins">XenCenter plug-ins<a class="headerlink" href="#xencenter-plug-ins" title="Permanent link">&para;</a></h2>
+<p>XenCenter plug-ins provides the facility for partners to add new menus
+and tabs to the XenCenter administration GUI. In particular, new tabs
+can have an embedded web browser, meaning that existing web-based
+management interfaces can easily be displayed. When combined with Xen
+API plug-ins to drive new menu items, this feature can be used by
+partners to integrate features from their supplemental packs into one
+centralized management interface for XenServer.</p>
+<p>For further information, please see
+<a href="http://community.citrix.com/display/xs/XenCenter+Plugins">http://community.citrix.com/display/xs/XenCenter+Plugins</a>.</p>
+<h2 id="xenserver-sdk">XenServer SDK<a class="headerlink" href="#xenserver-sdk" title="Permanent link">&para;</a></h2>
+<p>The XenServer SDK VM is a virtual machine appliance, ready to be
+imported into a XenServer host. It contains the complete set of
+XenServer SDKs, plus a complete Linux-based development environment.
+Language bindings are available for C, C#, Python, and Java, and a
+Windows PowerShell snap-in is also available. The SDK VM allows partners
+to easily develop solutions that utilize the rich API exposed by all
+XenServer hosts. The SDK VM is intended only as a convenient development
+environment: for an application developed against the appropriate
+language bindings to be distributed, only the relevant bindings are
+required (<em>not</em> the entire SDK VM).</p>
+<p>For further information, please see
+<a href="http://community.citrix.com/display/xs/Download+SDKs">http://community.citrix.com/display/xs/Download+SDKs</a>.</p> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../testing-and-certification/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>

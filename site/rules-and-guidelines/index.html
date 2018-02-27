@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Rules and Guidelines - Citrix XenServer Supplemental Packs and the DDK Guide</title>
+     
+    <link rel="shortcut icon" href="
+https://www.citrix.com/etc/designs/citrix/icon-favicon.png"> 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+    <link rel="stylesheet" href="../css/highlight.css">
+    <link rel="stylesheet" href="../css/override.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-awesome.css" type="text/css" /> 
+    <script>
+      // Current page data
+      var mkdocs_page_name = "Rules and Guidelines";
+      var mkdocs_page_input_path = "rules-and-guidelines.md";
+      var mkdocs_page_url = "/rules-and-guidelines/";
+
+    </script>
+    
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/highlight.pack.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/custom.js"></script>  
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+    <div class="header-top">
+
+        <div class="header-top-left">
+          <a href="http://developer-docs.citrix.com" class="logo-position"><img height="60" src="../img/citrixlogoblack.png" target="_blank" class="logo-citrix"><span style="color:#000;font-size: 20px;position: relative;top:4px;left:20px;">Developer Documentation</span></a>
+        </div>
+        <div class="header-top-right">
+          <ul>
+
+            <form id="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+             <ul class="header-elements">
+              <li class="list-inline support">
+                <input name="q" id="txtName" type="text" placeholder="Search SDKs" class="searchdocs">
+                <a class="fa fa-search errspan"></a>
+<!---
+              </li>
+             <li> <a href="javascript:void(0);" style="font-size: 22px;position: relative;left: -10px;top: 3px"><i class="fa fa-globe"></i></a></li>
+             </ul>
+             --->
+            </form>
+
+          </ul>
+
+        </div>
+
+    </div>
+    <div class="body">
+      <div class="wy-grid-for-nav">
+
+        
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+          <div class="wy-side-nav-search">
+            <div role="search">
+  <form id ="rtd-search-form-alt" class="wy-form" action="../search.html" method="get">
+	<i class="fa fa-search"></i>
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+          </div>
+
+          <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <ul class="current">
+              
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="..">Introduction</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../getting-started/">Getting Started</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../building-example-packs/">Building the example packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../installing-packs/">Installing supplemental packs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../producing-rpms/">Producing driver RPMs</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../creating-a-pack/">Creating a supplemental pack</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 current">
+        <a class="toctree-l1-a current" href="./">Rules and Guidelines</a>
+		
+            <ul style="margin-left: 0px;padding-left:15px;border-left: 1px solid #b2b2b2;">
+            
+                <li class="toctree-l3"><a href="#rules-and-guidelines" style="padding:0px;position: relative;">&nbsp;Rules and guidelines</a></li>
+                
+                    <li><a class="toctree-l4" href="#kernel-modules" style="padding:0px;position: relative;">Kernel modules</a></li>
+                
+                    <li><a class="toctree-l4" href="#post-install-scripts" style="padding:0px;position: relative;">Post-install scripts</a></li>
+                
+                    <li><a class="toctree-l4" href="#handling-upgrades" style="padding:0px;position: relative;">Handling upgrades</a></li>
+                
+                    <li><a class="toctree-l4" href="#uninstallation" style="padding:0px;position: relative;">Uninstallation</a></li>
+                
+                    <li><a class="toctree-l4" href="#building-packs-in-existing-build-environments" style="padding:0px;position: relative;">Building packs in existing build environments</a></li>
+                
+                    <li><a class="toctree-l4" href="#packaging-driver-firmware" style="padding:0px;position: relative;">Packaging driver firmware</a></li>
+                
+                    <li><a class="toctree-l4" href="#versioning" style="padding:0px;position: relative;">Versioning</a></li>
+                
+                    <li><a class="toctree-l4" href="#packages-compiled-by-but-not-in-xenserver" style="padding:0px;position: relative;">Packages compiled by, but not in, XenServer</a></li>
+                
+                    <li><a class="toctree-l4" href="#requirements-for-submission-of-drivers-for-inclusion-in-xenserver" style="padding:0px;position: relative;">Requirements for submission of drivers for inclusion in XenServer</a></li>
+                
+                    <li><a class="toctree-l4" href="#does-xenserver-already-include-a-driver-for-my-device" style="padding:0px;position: relative;">Does XenServer already include a driver for my device?</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../testing-and-certification/">Testing and Certification</a>
+		
+    </li>
+
+			  
+              
+    <li class="toctree-l1 ">
+        <a class="toctree-l1-a " href="../additional-resources/">Additional Resources</a>
+		
+    </li>
+
+			  
+            </ul>
+          </div>
+          &nbsp;
+        </nav>
+
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+           
+          <div class="wy-nav-content">
+            <div class="rst-content">
+              <!-- <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Rules and Guidelines</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div> -->
+              <div role="main">
+                <div class="section">
+                <div class="file-format">
+                 <div class="leftAlign" style="float: left;visibility: hidden;">
+                  </div>
+                  <div class="rightAlign" style="float: right;">
+                      <span>Download full document:</span>
+                      <ul class="file-types">
+                        <li><a style="border: 1px solid #EE3D24;padding: 5px;font-size: 11px;color: #EE3D24;border-radius: 5px;font-weight: 700">PDF</a></li>
+                        <li><a style="border: 1px solid #2A579A;padding: 5px;font-size: 11px;color: #2A579A;border-radius: 5px;font-weight: 700">DOCX</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">EMAIL</a></li>
+                        <li><a style="border: 1px solid #495164;padding: 5px;font-size: 11px;color: #495164;border-radius: 5px;font-weight: 700">PRINT</a></li>
+                      </ul>
+                  </div>
+                  </div>
+                   <h1 id="rules-and-guidelines">Rules and guidelines<a class="headerlink" href="#rules-and-guidelines" title="Permanent link">&para;</a></h1>
+<h2 id="kernel-modules">Kernel modules<a class="headerlink" href="#kernel-modules" title="Permanent link">&para;</a></h2>
+<p>Kernel modules must be built and packaged according to the following:</p>
+<ul>
+<li>
+<p>Modules must be placed in an RPM.</p>
+</li>
+<li>
+<p>All modules must be located under the directory
+    <code>/lib/modules/&lt;kernel&gt;/updates</code> where &lt;<em>kernel</em>&gt; is the
+    version of the kernel.</p>
+</li>
+</ul>
+<p>To ensure a pack is fully conformant, Citrix recommends basing it on one
+of the examples in the DDK.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The XenServer build into which a kernel module (driver) is installed <em>must</em> be the identical build to the DDK that was used to build the pack in which the driver is contained.
+If it is not, the resulting driver disk will not install on XenServer.</p>
+</blockquote>
+<h2 id="post-install-scripts">Post-install scripts<a class="headerlink" href="#post-install-scripts" title="Permanent link">&para;</a></h2>
+<p>Provided they comply with the following constraints, RPMs may contain
+scripts that are invoked during installation. Such scripts might be
+necessary in order to add appropriate firewall rules, or log rotation
+configuration, that is specific to the pack.</p>
+<ol>
+<li>
+<p>Scripts must not start processes.</p>
+</li>
+<li>
+<p>Scripts must not assume that XenServer is booted and running (as it
+    may be that the pack is being installed as part of an initial
+    XenServer installation.</p>
+</li>
+<li>
+<p>In the light of the previous point, if firewall rules are to be
+    added using a post-install script, the script <em>must</em> execute
+    <code>iptables-restore &lt; /etc/sysconfig/iptables</code> <em>before</em>
+    adding its own rules (using <code>iptables -A</code>), and then
+    execute <code>iptables-save &gt; /etc/sysconfig/iptables</code>. This
+    ensures that the default rules are loaded before the collection of
+    existing and new rules are saved. Failure to save the existing rules
+    will mean that when a pack is installed as part of a XenServer host
+    installation, the default XenServer firewall rules will be lost.</p>
+</li>
+</ol>
+<p>If an RPM needs to distinguish between a running host and an
+installation environment, the following code fragment may be used:</p>
+<div class="codehilite"><pre><span></span>if runlevel &gt;/dev/null 2&gt;&amp;1; then
+# running host
+else
+# installation
+fi
+</pre></div>
+
+
+<p>The following types of file <em>must</em> be placed in the appropriate
+directories:</p>
+<ul>
+<li>
+<p>Udev rules: must be located in <code>/etc/udev/rules.d/</code>.</p>
+</li>
+<li>
+<p>Firmware: must be located in <code>/lib/firmware/updates/&lt;kernel&gt;</code>.</p>
+</li>
+<li>
+<p>Configuration details: must be located in <code>/etc/</code>.</p>
+</li>
+<li>
+<p>Documentation: must be located in <code>/usr/share/doc/</code></p>
+</li>
+<li>
+<p>Firewall rules: must be added using <code>iptables -A</code>, having <em>first</em>
+    executed
+    <code>iptables-save &gt; /etc/sysconfig/iptables</code>
+    (see above).</p>
+</li>
+</ul>
+<h2 id="handling-upgrades">Handling upgrades<a class="headerlink" href="#handling-upgrades" title="Permanent link">&para;</a></h2>
+<p>On upgrade, pack authors may wish to transfer configuration or state information from the previous installation: this section describes how such a transfer may be achieved.</p>
+<h3 id="pack-upgrade-during-a-xenserver-upgrade">Pack upgrade during a XenServer upgrade<a class="headerlink" href="#pack-upgrade-during-a-xenserver-upgrade" title="Permanent link">&para;</a></h3>
+<p>When a XenServer host is upgraded, the installer replaces the file system before supplemental packs are installed.
+This affects the way individual RPMs interact with upgrades.
+To enable configuration files (or other configuration data, such as databases) to be carried over, the installer makes the file system of the previous installation (which is automatically backed-up to another partition) available to the RPM scripts.
+This is done through the <code>XS_PREVIOUS_INSTALLATION</code> environment variable.</p>
+<p>Therefore, in order to migrate state across upgrades, supplemental pack
+authors must create a suitable script that runs as part of an RPM
+installation, and migrates the state. Specifically, the migration should
+be from the old root file system pointed to by
+<code>XS_PREVIOUS_INSTALLATION</code> to the new file system mounted on <code>/</code>.</p>
+<p>For an example of how this can be done, see the <code>%post</code> script in
+<code>examples/userspace/helloworld-user.spec</code>.</p>
+<h3 id="pack-upgrade-on-an-existing-xenserver-installation">Pack upgrade on an existing XenServer installation<a class="headerlink" href="#pack-upgrade-on-an-existing-xenserver-installation" title="Permanent link">&para;</a></h3>
+<p>It is expected that on each release of XenServer, supplemental pack
+authors are likely to release new versions of their packs. However, if a
+pack author releases an update between XenServer releases, existing
+installations of the old version of the pack would need to be upgraded.
+This upgrade path is the responsibility of the pack author, as the
+location of the configuration data of the old version is on the root
+file system, wherever the RPMs installed it to. The update installation
+process upgrades all RPMs contained within the pack, hence these RPMs
+should be aware of how to deal with the existence of any relevant
+configuration files.</p>
+<h2 id="uninstallation">Uninstallation<a class="headerlink" href="#uninstallation" title="Permanent link">&para;</a></h2>
+<p>Supplemental Packs that only contain userspace packages may include a
+script that removes the pack from a host.</p>
+<ul>
+<li>
+<p>Uninstalls the packages</p>
+</li>
+<li>
+<p>Uninstalls other packages used to apply the pack</p>
+</li>
+<li>
+<p>Causes xapi to remove the pack from the database</p>
+</li>
+</ul>
+<h2 id="building-packs-in-existing-build-environments">Building packs in existing build environments<a class="headerlink" href="#building-packs-in-existing-build-environments" title="Permanent link">&para;</a></h2>
+<p>Citrix recognises that many partners have existing build systems that
+are used to produce the software that might be integrated into a
+supplemental pack. To facilitate this, pack authors are <em>not</em> required
+to make use of the Driver Development Kit VM, <em>if</em> they are producing
+packs that do <em>not</em> contain drivers (as these need to be compiled for
+the correct XenServer kernels).</p>
+<p>If a pack author wishes to distribute drivers as part of a supplemental
+pack, (or a pack consisting solely of drivers, commonly known as a
+Driver Disk), then the driver(s) will need to be compiled using the DDK.
+However, there is no barrier to pack authors including the driver disks
+that are output by the DDK in their own build processes. Citrix does not
+support the compilation of drivers for XenServer in any way other than
+using the DDK VM.</p>
+<p>To build a supplemental pack (but not a driver) as part of an existing
+build process, the only package that is necessary from the Binary
+Packages ISO is <code>update-package</code>.</p>
+<p>These can be used in any environment to create an appropriate pack.
+Note, however, that this environment must contain various tools that are
+normally found in standard Linux distributions, including <code>tar</code>,
+<code>mkisofs</code>, <code>sed</code>, and <code>rpm</code>.</p>
+<blockquote>
+<p><strong>Warning</strong></p>
+<p>When integrating these scripts as part of another build system, pack authors should bear in mind that Citrix may update these scripts as new versions of XenServer are released.
+Pack authors should ensure that they update this package from the new version of the DDK before building packs for the new version of XenServer.</p>
+</blockquote>
+<p>For pack authors who wish to produce a supplemental pack as an output of
+another build system, but who wish to include drivers, the following
+procedure should be followed:</p>
+<ol>
+<li>
+<p>Copy the driver source into a running DDK VM the corresponds to the
+    build of XenServer that the drivers will be targeted at.</p>
+</li>
+<li>
+<p>Produce driver <em>RPMs</em> (rather than a supplemental pack ISO). This
+    can be achieved using the <code>$(RPM-FILE)</code> rule in the standard
+    <code>Makefile</code> provided in the example packs.</p>
+</li>
+<li>
+<p>By default, this command will output three driver RPMs into
+    <code>/root/rpmbuild/RPMS/x86-64</code>. Pack authors should ignore the
+    <code>debuginfo</code> RPM, and take the other RPMs for inclusion in their
+    supplemental pack. These RPMs can be treated in the same way as any
+    other RPM to be shipped in the pack.</p>
+</li>
+<li>
+<p>These RPMs should be provided to the non-DDK build system, for
+    inclusion in the finished pack. Evidently, this process assumes that
+    pack authors will be releasing new versions of their packs more
+    frequently than the XenServer kernel is changed, or that introducing
+    new versions of RPMs into the alternative build system is more
+    acceptable than introducing the DDK as the build system.</p>
+</li>
+</ol>
+<h2 id="packaging-driver-firmware">Packaging driver firmware<a class="headerlink" href="#packaging-driver-firmware" title="Permanent link">&para;</a></h2>
+<p>It is increasingly common for hardware manufacturers to produce
+components that load up-to-date firmware from the operating system that
+is running on the host machine. XenServer supports this mechanism, and
+firmware packages should be installed to
+<code>/lib/firmware/updates/&lt;kernel&gt;</code>. The firmware should be packaged in an
+RPM, and included as part of a supplemental pack.</p>
+<h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h2>
+<h3 id="supplemental-pack-versioning">Supplemental pack versioning<a class="headerlink" href="#supplemental-pack-versioning" title="Permanent link">&para;</a></h3>
+<p>Authors of supplemental packs are free to use whatever version numbering
+scheme they feel is appropriate for their pack. Given that many packs
+are likely to include RPMs of existing software, it is suggested that
+the pack version number correspond to the version of the software it
+contains. For example, if an existing management console RPM is at
+version 5, it is likely to be less confusing if the first version of the
+supplemental pack that contains this RPM is also version 5.</p>
+<p>There is no reason why, if it is simple enough, a pack should not be
+suitable for multiple releases of XenServer <em>provided</em> that it does not
+depend on particular versions of other tools. In practice, Citrix is of
+the opinion that packs should be re-released for each new version of
+XenServer, in order that they are also fully tested by the authors on
+that new release. If a pack author chooses to release one pack for
+multiple XenServer releases, they should ensure that the dependency
+information expressed in the metadata of the pack uses the <code>ge</code>
+comparator for the XenServer product, where the version to be compared
+against is the lowest supported version of XenServer.</p>
+<h3 id="kernel-module-versioning">Kernel module versioning<a class="headerlink" href="#kernel-module-versioning" title="Permanent link">&para;</a></h3>
+<p>Each kernel module is built against a specific kernel version. This
+kernel version is included in the RPM name to enable multiple instances
+to be installed. The version fields of a kernel module RPM are used to
+track changes to a driver for a single kernel version. Each time a
+driver is released for a particular kernel, the RPM version must be
+increased (as would be expected, given that there will have been changes
+made to the driver sources).</p>
+<p>For example:</p>
+<div class="codehilite"><pre><span></span>helloworld-modules-xen-2.6.18-128.1.6.el5.xs5.5.0.502.1014-1.0-1.i386.rpm
+driver name = helloworld
+kernel flavour = xen
+kernel version = 2.6.18-128.1.6.el5.xs5.5.0.502.1014
+RPM version = 1.0
+RPM build = 1
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th>XenServer Kernel version</th>
+<th>Kernel module RPM version</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.6.18.128.1.5...</td>
+<td>1.0-1</td>
+<td>Initial release of pack</td>
+</tr>
+<tr>
+<td>2.6.18.128.1.5...</td>
+<td>1.1-1</td>
+<td>Driver bug fix</td>
+</tr>
+<tr>
+<td>2.6.27.37...</td>
+<td>2.0-1</td>
+<td>New XenServer kernel, and new driver version</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, if a supplemental pack contains a driver, it will be
+necessary to rebuild that driver for each update and major release of
+XenServer. Note that hotfixes do not normally change the kernel version,
+and hence the same driver can be used until a XenServer update ("service
+pack") is released.</p>
+<p>As a general rule, if a pack contains only a single driver, it is
+strongly recommended that the version numbering of the pack be the same
+as that of the driver.</p>
+<h2 id="packages-compiled-by-but-not-in-xenserver">Packages compiled by, but not in, XenServer<a class="headerlink" href="#packages-compiled-by-but-not-in-xenserver" title="Permanent link">&para;</a></h2>
+<p>Some of the packages that are included in the XenServer control domain
+are taken directly from the base Linux distribution, whilst others are
+modified and re-compiled by Citrix. In some cases, certain source RPMs,
+when compiled, result in more than one binary RPM. There exist a variety
+of packages where XenServer includes some, but not all, of the resulting
+binaries; for example, the <code>net-snmp</code> package results in the binary
+packages <code>net-snmp</code> and <code>net-snmp-utils</code>, but <code>net-snmp-utils</code> is not
+included in dom0.</p>
+<p>If a supplemental pack author wishes to include a binary package that
+falls into this category, that binary package will need to have the
+correct build number for the version of XenServer it is to be installed
+upon. Because Citrix re-compiles these packages, their build numbers
+will have a XenServer-specific build number extension. Therefore, pack
+authors will need to obtain these binary RPMs from Citrix.</p>
+<p>To enable this process to be as simple as possible, Citrix produces an
+extra ISO (<code>binpkg.iso</code>) for each release of XenServer that contains all
+the packages that fall into this category. Partners should contact
+Citrix to obtain this ISO.</p>
+<h2 id="requirements-for-submission-of-drivers-for-inclusion-in-xenserver">Requirements for submission of drivers for inclusion in XenServer<a class="headerlink" href="#requirements-for-submission-of-drivers-for-inclusion-in-xenserver" title="Permanent link">&para;</a></h2>
+<p>Citrix encourages hardware vendors to submit any driver disks released
+for XenServer to Citrix in order that the drivers may be incorporated
+into the next release of the product. In order to make this process as
+simple as possible, vendors are requested to take note of the following
+requirements:</p>
+<ol>
+<li>
+<p>Any driver submitted must include its full source code, that is
+    available under an open source license compatible with the GNU
+    General Public License (GPL).</p>
+</li>
+<li>
+<p>Any binary firmware submitted must either be already publicly
+    available under a license allowing re-distribution, or the vendor
+    must have a current re-distribution agreement with Citrix.</p>
+</li>
+<li>
+<p>If a new, (rather than an update to an existing) driver is being
+    submitted, Citrix will review it in order to confirm that it is
+    compatible with the current support statements made concerning
+    XenServer. It may be that a driver is rejected because it is
+    monolithic, or enables a feature which is not currently officially
+    supported. This may also be the case with radical changes made to
+    drivers that are already in the product. Partners who consider that
+    their driver(s) fall into this category should contact Citrix as
+    early as possible, in order that both organizations' engineering
+    teams are able to ascertain how to proceed.</p>
+</li>
+<li>
+<p>Strict time limits apply to submissions (see below). Vendors should
+    make their drivers available to Citrix as soon as possible, rather
+    than waiting until these deadlines, as testing may result in fixes
+    being required, which then need to be integrated into the product.</p>
+</li>
+<li>
+<p>Certain drivers are deemed critical to automated testing by Citrix
+    of XenServer. Any (entire-driver) updates to these drivers must be
+    provided a minimum of 6 weeks prior to the beta RTM date of the
+    release in which they are to be included. Partners whose drivers are
+    on this list will be informed of this constraint.</p>
+</li>
+<li>
+<p>All other entire-driver updates (or new drivers) must be provided to
+    Citrix a minimum of 5 weeks prior to beta RTM.</p>
+</li>
+<li>
+<p>Any updates to drivers (for example, no new drivers) received after
+    these dates must be in the form of small, targeted fixes for
+    specific issues. Patches must be submitted that can be understood by
+    a reasonably experienced person, together with a description of the
+    flaw that particular patch addresses. Each fix should be in the form
+    of a separate patch, with an indication of what the flaw fixed is,
+    the effects the flaw would have if it is not addressed, and whether
+    such issues have already been seen by customers. Significant
+    additions of functionality, or very large patches will not be
+    accepted.</p>
+</li>
+<li>
+<p>Close to the RTM date of the beta of the release concerned, it is
+    unlikely that patches will be inserted into the beta release (though
+    they may be incorporated into the final release, if they are judged
+    to be of sufficient importance). Only in exceptional circumstances
+    will patches received fewer than 2 weeks prior to beta RTM be
+    incorporated into the beta. The preferred target for all driver
+    updates is the beta release, in order to achieve maximum testing
+    benefit.</p>
+</li>
+<li>
+<p>Submitting a GPG Key: Once the key has been generated, when creating
+    the update pack, the name of the GPG key is baked into the Yum repo
+    metadata. This means the public key file cannot be renamed without
+    resigning the Update package.</p>
+<p>When the key-pair has been generated, export the public part (using
+ASCI Armor) and create a ticket on <a href="http://tracker.citrix.com/">Citrix Issue
+Tracker</a> to include it in the inbox.</p>
+</li>
+</ol>
+<h2 id="does-xenserver-already-include-a-driver-for-my-device">Does XenServer already include a driver for my device?<a class="headerlink" href="#does-xenserver-already-include-a-driver-for-my-device" title="Permanent link">&para;</a></h2>
+<p>XenServer includes a wide variety of drivers, including many that are
+distributed (inbox) with the kernel that dom0 is based upon. It may
+therefore be the case that XenServer includes a driver that enables a
+device that is not present on the XenServer Hardware Compatibility List
+(HCL). This is particularly the case where a device is sold by multiple
+companies, each of which refers to it with a different name.</p>
+<p>Because each driver included in XenServer includes information
+concerning which PCI device IDs it claims, the simplest way to ascertain
+whether a device is supported is to first find its device ID.</p>
+<p>If the device is present in a running Linux-based system, the <code>lspci -v</code>
+command can be used, which will provide output which includes the
+information on all devices present in the host. If the <code>-n</code> switch is
+given, numeric IDs will be provided.</p>
+<p>If only the name of the device is known, use the PCI ID database
+(<a href="http://pciids.sourceforge.net/pci.ids">http://pciids.sourceforge.net/pci.ids</a>) to ascertain what the ID of
+the device is. This database will also provide alternate names for the
+device, which may of use if the exact name is not listed in the
+XenServer HCL.</p>
+<p>If the an alternate name for the device is not found on the HCL, then
+either the device has not been tested on XenServer, or a driver for it
+is not included in XenServer. To confirm whether a suitable driver is
+included, consult the list of PCI IDs the XenServer kernel supports,
+found in <code>/lib/modules/&lt;version&gt;/modules.pcimap</code>.</p> 
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+    <!--<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span class="prev"><a href="../creating-a-pack/"><i class="fa fa-angle-left"></i> Previous</a></span>
+      
+      
+        <span class="next"><a href="../testing-and-certification/">Next <i class="fa fa-angle-right"></i></a></span>
+      
+    </span>
+	<div class="footer-right">
+		<ul class="social-links">
+			<li class="list-inline"><a href="https://twitter.com/citrix"><i class="fa fa-twitter"></i>@citrix</a></li>
+			<li class="list-inline"><a href="mailto:support@citrix.com"><i class="fa fa-envelope-o"></i>support@citrix.com</a></li>
+		</ul>
+		<ul class="inner-pages">
+			<li class="list-inline"><a href="http://citrix.com/about/legal">Privacy and Terms</li>
+		</ul>
+	</div>
+</div>-->
+
+  </body>
+
+</html>
